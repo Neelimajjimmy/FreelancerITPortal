@@ -1,0 +1,97 @@
+﻿@model project2FreelancerPortal.Models.SearchProject
+@{
+    ViewBag.Title = "userIndex";
+    Layout = "~/Views/Shared/_userLayout.cshtml";
+}
+
+@using (Html.BeginForm("search_click", "User", FormMethod.Post))
+{
+
+    <div class="container mt-4">
+
+        <h3>Search Projects</h3>
+        <div class="row searchbox">
+
+            <div class="col-lg-3">
+                <label class="form-label fw-bold">Skills</label>
+                @Html.TextBoxFor(m => m.skills,
+                    new { @class = "form-control" })
+            </div>
+
+            <div class="col-lg-3">
+                <label class="form-label fw-bold">Experience Level</label>
+                @Html.TextBoxFor(m => m.exp,
+                    new { @class = "form-control" })
+            </div>
+
+            <div class="col-lg-3">
+                <label class="form-label fw-bold">Duration</label>
+                @Html.TextBoxFor(m => m.duration,
+                    new { @class = "form-control" })
+            </div>
+
+            <div class="col-lg-3">
+               <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+
+        </div>
+       
+        <table class="table table-striped table-bordered mt-3">
+            <thead style="background-color:black;color:white">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Skills</th>
+                    <th>Budget</th>
+                    <th>Duration</th>
+                    <th width="90">Deadline</th>
+                    <th>Experience</th>
+                    <th>Status</th>
+                    <th width="50">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (ViewBag.projects != null && ViewBag.projects.Count > 0)
+                {
+                    foreach (var item in ViewBag.projects)
+                    {
+                        <tr>
+                            <td>@item.title</td>
+                            <td>@item.description</td>
+                            <td>@item.skill</td>
+                            <td>@item.budget</td>
+                            <td>@item.duration</td>
+                            <td>@item.deadline.ToString("dd/MM/yyyy")</td>
+                            <td>@item.exp</td>
+                            <td>@item.status</td>
+                            <td>
+                                @Html.ActionLink(
+     "Bid Now",
+     "Bidnow",
+     "User",
+     new { id = item.pid },
+     new { @class = "btn btn-success mb-3" }
+ )
+                                
+
+
+                            </td>
+                        </tr>
+                    }
+
+
+
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="9" class="text-center  fw-bold">
+                            No projects found
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

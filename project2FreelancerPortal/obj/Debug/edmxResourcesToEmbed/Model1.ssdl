@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="freelanceDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="adminReg">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="freelancertab">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="skill" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="experience" Type="int" Nullable="false" />
+    <Property Name="resume" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="photo" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="logintab">
+    <Key>
+      <PropertyRef Name="logid" />
+    </Key>
+    <Property Name="logid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="regid" Type="int" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="logtype" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="project_tab">
+    <Key>
+      <PropertyRef Name="projid" />
+    </Key>
+    <Property Name="projid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="skills" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="budget" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+    <Property Name="duration" Type="int" Nullable="false" />
+    <Property Name="deadline" Type="date" Nullable="false" />
+    <Property Name="explevel" Type="int" Nullable="false" />
+    <Property Name="projstatus" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="proposals">
+    <Key>
+      <PropertyRef Name="pid" />
+    </Key>
+    <Property Name="pid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="projid" Type="int" Nullable="false" />
+    <Property Name="userid" Type="int" Nullable="false" />
+    <Property Name="amount" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+    <Property Name="days" Type="int" Nullable="false" />
+    <Property Name="pstatus" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="skills">
+    <Key>
+      <PropertyRef Name="skillid" />
+    </Key>
+    <Property Name="skillid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Function Name="sp_BidProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prid" Type="int" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="amt" Type="decimal" Mode="In" />
+    <Parameter Name="days" Type="int" Mode="In" />
+    <Parameter Name="st" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_editProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="desc" Type="varchar" Mode="In" />
+    <Parameter Name="budget" Type="decimal" Mode="In" />
+    <Parameter Name="dur" Type="int" Mode="In" />
+    <Parameter Name="ded" Type="date" Mode="In" />
+    <Parameter Name="st" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_GetId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="una" Type="varchar" Mode="In" />
+    <Parameter Name="pw" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_GetLogtype" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="una" Type="varchar" Mode="In" />
+    <Parameter Name="pw" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_GetProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_GetProjectDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetProposals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetProposalsByProjectId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_InsertProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tit" Type="varchar" Mode="In" />
+    <Parameter Name="desc" Type="varchar" Mode="In" />
+    <Parameter Name="skil" Type="varchar" Mode="In" />
+    <Parameter Name="bud" Type="decimal" Mode="In" />
+    <Parameter Name="dur" Type="int" Mode="In" />
+    <Parameter Name="deadline" Type="date" Mode="In" />
+    <Parameter Name="exp" Type="int" Mode="In" />
+    <Parameter Name="status" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_LoginDb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="una" Type="varchar" Mode="In" />
+    <Parameter Name="pw" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_LoginInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="rid" Type="int" Mode="In" />
+    <Parameter Name="una" Type="varchar" Mode="In" />
+    <Parameter Name="pw" Type="varchar" Mode="In" />
+    <Parameter Name="type" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_MaxLogId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_registerAdmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="name" Type="varchar" Mode="In" />
+    <Parameter Name="em" Type="varchar" Mode="In" />
+    <Parameter Name="ph" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_registerUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="name" Type="varchar" Mode="In" />
+    <Parameter Name="em" Type="varchar" Mode="In" />
+    <Parameter Name="addr" Type="varchar" Mode="In" />
+    <Parameter Name="ph" Type="nvarchar" Mode="In" />
+    <Parameter Name="sk" Type="varchar" Mode="In" />
+    <Parameter Name="exp" Type="int" Mode="In" />
+    <Parameter Name="res" Type="varchar" Mode="In" />
+    <Parameter Name="photo" Type="varchar" Mode="In" />
+    <Parameter Name="st" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_SearchProjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="qry" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <EntityContainer Name="freelanceDbModelStoreContainer">
+    <EntitySet Name="adminReg" EntityType="Self.adminReg" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="freelancertab" EntityType="Self.freelancertab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="logintab" EntityType="Self.logintab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="project_tab" EntityType="Self.project_tab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proposals" EntityType="Self.proposals" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="skills" EntityType="Self.skills" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

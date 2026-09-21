@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="freelanceDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="adminReg">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="freelancertab">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="skill" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="experience" Type="Int32" Nullable="false" />
+    <Property Name="resume" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="photo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="logintab">
+    <Key>
+      <PropertyRef Name="logid" />
+    </Key>
+    <Property Name="logid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="regid" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="logtype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="project_tab">
+    <Key>
+      <PropertyRef Name="projid" />
+    </Key>
+    <Property Name="projid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="skills" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="budget" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+    <Property Name="duration" Type="Int32" Nullable="false" />
+    <Property Name="deadline" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="explevel" Type="Int32" Nullable="false" />
+    <Property Name="projstatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="proposal">
+    <Key>
+      <PropertyRef Name="pid" />
+    </Key>
+    <Property Name="pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="projid" Type="Int32" Nullable="false" />
+    <Property Name="userid" Type="Int32" Nullable="false" />
+    <Property Name="amount" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+    <Property Name="days" Type="Int32" Nullable="false" />
+    <Property Name="pstatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="skill">
+    <Key>
+      <PropertyRef Name="skillid" />
+    </Key>
+    <Property Name="skillid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="freelanceDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="adminRegs" EntityType="Self.adminReg" />
+    <EntitySet Name="freelancertabs" EntityType="Self.freelancertab" />
+    <EntitySet Name="logintabs" EntityType="Self.logintab" />
+    <EntitySet Name="project_tab" EntityType="Self.project_tab" />
+    <EntitySet Name="proposals" EntityType="Self.proposal" />
+    <EntitySet Name="skills" EntityType="Self.skill" />
+    <FunctionImport Name="sp_GetId" ReturnType="Collection(Int32)">
+      <Parameter Name="una" Mode="In" Type="String" />
+      <Parameter Name="pw" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetLogtype" ReturnType="Collection(String)">
+      <Parameter Name="una" Mode="In" Type="String" />
+      <Parameter Name="pw" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_LoginDb" ReturnType="Collection(Int32)">
+      <Parameter Name="una" Mode="In" Type="String" />
+      <Parameter Name="pw" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_LoginInsert">
+      <Parameter Name="rid" Mode="In" Type="Int32" />
+      <Parameter Name="una" Mode="In" Type="String" />
+      <Parameter Name="pw" Mode="In" Type="String" />
+      <Parameter Name="type" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_MaxLogId" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="sp_registerAdmin">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="em" Mode="In" Type="String" />
+      <Parameter Name="ph" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_registerUser">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="em" Mode="In" Type="String" />
+      <Parameter Name="addr" Mode="In" Type="String" />
+      <Parameter Name="ph" Mode="In" Type="String" />
+      <Parameter Name="sk" Mode="In" Type="String" />
+      <Parameter Name="exp" Mode="In" Type="Int32" />
+      <Parameter Name="res" Mode="In" Type="String" />
+      <Parameter Name="photo" Mode="In" Type="String" />
+      <Parameter Name="st" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetProject" ReturnType="Collection(freelanceDbModel.sp_GetProject_Result)" />
+    <FunctionImport Name="sp_InsertProject">
+      <Parameter Name="tit" Mode="In" Type="String" />
+      <Parameter Name="desc" Mode="In" Type="String" />
+      <Parameter Name="skil" Mode="In" Type="String" />
+      <Parameter Name="bud" Mode="In" Type="Decimal" />
+      <Parameter Name="dur" Mode="In" Type="Int32" />
+      <Parameter Name="deadline" Mode="In" Type="DateTime" />
+      <Parameter Name="exp" Mode="In" Type="Int32" />
+      <Parameter Name="status" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_editProject">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="desc" Mode="In" Type="String" />
+      <Parameter Name="budget" Mode="In" Type="Decimal" />
+      <Parameter Name="dur" Mode="In" Type="Int32" />
+      <Parameter Name="ded" Mode="In" Type="DateTime" />
+      <Parameter Name="st" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_SearchProjects">
+      <Parameter Name="qry" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_BidProject">
+      <Parameter Name="prid" Mode="In" Type="Int32" />
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="amt" Mode="In" Type="Decimal" />
+      <Parameter Name="days" Mode="In" Type="Int32" />
+      <Parameter Name="st" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetProjectDetails" ReturnType="Collection(freelanceDbModel.sp_GetProjectDetails_Result)">
+      <Parameter Name="prid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetProposals" ReturnType="Collection(freelanceDbModel.sp_GetProposals_Result)">
+      <Parameter Name="uid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetProposalsByProjectId" ReturnType="Collection(freelanceDbModel.sp_GetProposalsByProjectId_Result)">
+      <Parameter Name="prid" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_GetProject_Result">
+    <Property Type="Int32" Name="projid" Nullable="false" />
+    <Property Type="String" Name="title" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="skills" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="budget" Nullable="false" Precision="15" Scale="2" />
+    <Property Type="Int32" Name="duration" Nullable="false" />
+    <Property Type="DateTime" Name="deadline" Nullable="false" />
+    <Property Type="Int32" Name="explevel" Nullable="false" />
+    <Property Type="String" Name="projstatus" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_GetProjectDetails_Result">
+    <Property Type="String" Name="title" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="skills" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_GetProposals_Result">
+    <Property Type="String" Name="title" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="false" MaxLength="250" />
+    <Property Type="Decimal" Name="amount" Nullable="false" Precision="14" Scale="2" />
+    <Property Type="Int32" Name="days" Nullable="false" />
+    <Property Type="String" Name="pstatus" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_GetProposalsByProjectId_Result">
+    <Property Type="Int32" Name="projid" Nullable="false" />
+    <Property Type="Int32" Name="userid" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="resume" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="photo" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="title" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="amount" Nullable="false" Precision="14" Scale="2" />
+    <Property Type="Int32" Name="days" Nullable="false" />
+  </ComplexType>
+</Schema>

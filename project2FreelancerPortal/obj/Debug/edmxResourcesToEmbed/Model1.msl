@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="freelanceDbModelStoreContainer" CdmEntityContainer="freelanceDbEntities">
+    <EntitySetMapping Name="adminRegs">
+      <EntityTypeMapping TypeName="freelanceDbModel.adminReg">
+        <MappingFragment StoreEntitySet="adminReg">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="freelancertabs">
+      <EntityTypeMapping TypeName="freelanceDbModel.freelancertab">
+        <MappingFragment StoreEntitySet="freelancertab">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="skill" ColumnName="skill" />
+          <ScalarProperty Name="experience" ColumnName="experience" />
+          <ScalarProperty Name="resume" ColumnName="resume" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="logintabs">
+      <EntityTypeMapping TypeName="freelanceDbModel.logintab">
+        <MappingFragment StoreEntitySet="logintab">
+          <ScalarProperty Name="logid" ColumnName="logid" />
+          <ScalarProperty Name="regid" ColumnName="regid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="logtype" ColumnName="logtype" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_tab">
+      <EntityTypeMapping TypeName="freelanceDbModel.project_tab">
+        <MappingFragment StoreEntitySet="project_tab">
+          <ScalarProperty Name="projid" ColumnName="projid" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="skills" ColumnName="skills" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="deadline" ColumnName="deadline" />
+          <ScalarProperty Name="explevel" ColumnName="explevel" />
+          <ScalarProperty Name="projstatus" ColumnName="projstatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proposals">
+      <EntityTypeMapping TypeName="freelanceDbModel.proposal">
+        <MappingFragment StoreEntitySet="proposals">
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="projid" ColumnName="projid" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="days" ColumnName="days" />
+          <ScalarProperty Name="pstatus" ColumnName="pstatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="skills">
+      <EntityTypeMapping TypeName="freelanceDbModel.skill">
+        <MappingFragment StoreEntitySet="skills">
+          <ScalarProperty Name="skillid" ColumnName="skillid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetId" FunctionName="freelanceDbModel.Store.sp_GetId" />
+    <FunctionImportMapping FunctionImportName="sp_GetLogtype" FunctionName="freelanceDbModel.Store.sp_GetLogtype" />
+    <FunctionImportMapping FunctionImportName="sp_LoginDb" FunctionName="freelanceDbModel.Store.sp_LoginDb" />
+    <FunctionImportMapping FunctionImportName="sp_LoginInsert" FunctionName="freelanceDbModel.Store.sp_LoginInsert" />
+    <FunctionImportMapping FunctionImportName="sp_MaxLogId" FunctionName="freelanceDbModel.Store.sp_MaxLogId" />
+    <FunctionImportMapping FunctionImportName="sp_registerAdmin" FunctionName="freelanceDbModel.Store.sp_registerAdmin" />
+    <FunctionImportMapping FunctionImportName="sp_registerUser" FunctionName="freelanceDbModel.Store.sp_registerUser" />
+    <FunctionImportMapping FunctionImportName="sp_GetProject" FunctionName="freelanceDbModel.Store.sp_GetProject">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="freelanceDbModel.sp_GetProject_Result">
+          <ScalarProperty Name="projid" ColumnName="projid" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="skills" ColumnName="skills" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="deadline" ColumnName="deadline" />
+          <ScalarProperty Name="explevel" ColumnName="explevel" />
+          <ScalarProperty Name="projstatus" ColumnName="projstatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_InsertProject" FunctionName="freelanceDbModel.Store.sp_InsertProject" />
+    <FunctionImportMapping FunctionImportName="sp_editProject" FunctionName="freelanceDbModel.Store.sp_editProject" />
+    <FunctionImportMapping FunctionImportName="sp_SearchProjects" FunctionName="freelanceDbModel.Store.sp_SearchProjects" />
+    <FunctionImportMapping FunctionImportName="sp_BidProject" FunctionName="freelanceDbModel.Store.sp_BidProject" />
+    <FunctionImportMapping FunctionImportName="sp_GetProjectDetails" FunctionName="freelanceDbModel.Store.sp_GetProjectDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="freelanceDbModel.sp_GetProjectDetails_Result">
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="skills" ColumnName="skills" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetProposals" FunctionName="freelanceDbModel.Store.sp_GetProposals">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="freelanceDbModel.sp_GetProposals_Result">
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="days" ColumnName="days" />
+          <ScalarProperty Name="pstatus" ColumnName="pstatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetProposalsByProjectId" FunctionName="freelanceDbModel.Store.sp_GetProposalsByProjectId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="freelanceDbModel.sp_GetProposalsByProjectId_Result">
+          <ScalarProperty Name="projid" ColumnName="projid" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="resume" ColumnName="resume" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="days" ColumnName="days" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
