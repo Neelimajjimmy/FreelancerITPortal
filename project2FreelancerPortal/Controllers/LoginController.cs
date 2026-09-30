@@ -20,7 +20,7 @@ namespace project2FreelancerPortal.Controllers
         {
             if (ModelState.IsValid)
             {
-                var count = db.sp_LoginDb(ob.username, ob.pass).First();
+                var count = db.sp_LoginDb(ob.username, ob.pass).FirstOrDefault();
                 if (count == 1)
                 {
                     var getid = db.sp_GetId(ob.username, ob.pass).FirstOrDefault();
@@ -40,5 +40,7 @@ namespace project2FreelancerPortal.Controllers
             }
             return View("Login_load");
         }
+
+        
     }
 }

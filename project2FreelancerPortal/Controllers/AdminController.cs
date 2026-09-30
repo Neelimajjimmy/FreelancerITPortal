@@ -12,7 +12,7 @@ namespace project2FreelancerPortal.Controllers
         freelanceDbEntities db = new freelanceDbEntities();
         // GET: Admin
         public ActionResult Index()
-        {
+     {
 
             var projectlist = db.sp_GetProject().ToList();
             ViewBag.projects = projectlist;

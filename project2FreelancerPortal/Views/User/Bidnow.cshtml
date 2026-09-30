@@ -8,62 +8,64 @@
 
 @using (Html.BeginForm("Bidnow", "User", FormMethod.Post))
 {
-    <div class="containerdiv">
+   <div class="admin-project-page">
+       <div class="containerdiv">
 
 
-        <div class="carddiv">
-            <h3>Project Bid</h3>
-            <div class="title">
-                @Model.title
-            </div>
+           <div class="carddiv">
+               <h3>Project Bid</h3>
+               <div class="title">
+                   @Model.title
+               </div>
 
-            <div class="description">
-                <strong>Description:</strong><br />
-                @Model.desc
-            </div>
+               <div class="description">
+                   <strong>Description:</strong><br />
+                   @Model.desc
+               </div>
 
-            <div class="skills">
-                <strong>Skills:</strong><br />
-                @Model.skill
-            </div>
-
-
-            @Html.HiddenFor(m => m.prid)
-
-            <div class="form-group">
-                <label class="form-label fw-bold">
-                    Bid Amount
-                </label>
+               <div class="skills">
+                   <strong>Skills:</strong><br />
+                   @Model.skill
+               </div>
 
 
+               @Html.HiddenFor(m => m.prid)
 
-
-                @Html.TextBoxFor(m => m.amt,
-             new { @class = "form-control", placeholder = "Enter amount" })
-
-            </div>
-
-            <div class="form-group">
-                <label class="form-label fw-bold">
-                    Estimated Days
-                </label>
+               <div class="form-group">
+                   <label class="form-label fw-bold">
+                       Bid Amount
+                   </label>
 
 
 
 
-                @Html.TextBoxFor(m => m.days,
-             new { @class = "form-control", placeholder = "Enter days" })
+                   @Html.TextBoxFor(m => m.amt,
+                new { @class = "form-control", placeholder = "Enter amount" })
 
-            </div>
+               </div>
 
-            <div class="form-group">
-                <button type="submit"
-                        class=" btn violet-btn px-5 w-100">
-                    Bid on Project
-                </button>
-            </div>
+               <div class="form-group">
+                   <label class="form-label fw-bold">
+                       Estimated Days
+                   </label>
 
-        </div>
 
-    </div>
-}
+
+
+                   @Html.TextBoxFor(m => m.days,
+                new { @class = "form-control", placeholder = "Enter days" })
+
+               </div>
+
+               <div class="form-group">
+                   <button type="submit"
+                           class=" btn violet-btn px-5 w-100">
+                       Bid on Project
+                   </button>
+               </div>
+
+           </div>
+
+       </div>
+       </div>
+       }
